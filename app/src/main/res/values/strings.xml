@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Nano Apps</string>
+    <string name="menu_item_title_share">Share</string>
 </resources>

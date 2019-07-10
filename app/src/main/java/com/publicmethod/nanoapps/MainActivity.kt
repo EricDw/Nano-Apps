@@ -3,8 +3,11 @@ package com.publicmethod.nanoapps
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.Gravity
+import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuAdapter
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.content.ContextCompat.getDrawable
 import com.google.android.material.bottomappbar.BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
 import com.publicmethod.viewfactories.factories.createBottomAppBar
@@ -60,6 +63,11 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(rootLayout)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean =
+        menuInflater.inflate(R.menu.menu_main, menu).run {
+            true
+        }
 
     private fun showBottomInput() =
         Toast.makeText(
