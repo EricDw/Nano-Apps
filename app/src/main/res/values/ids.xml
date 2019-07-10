@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="constraint_layout_main" type="id" />
+    <item name="coordinator_layout_main" type="id" />
+    <item name="app_bar_main" type="id" />
     <item name="fab_main" type="id" />
 </resources>
