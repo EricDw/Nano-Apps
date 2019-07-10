@@ -1,0 +1,3 @@
+[submodule "Android-View-Factories"]
+	path = Android-View-Factories
+	url = git@github.com:EricDw/Android-View-Factories.git
