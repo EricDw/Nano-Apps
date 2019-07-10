@@ -1,0 +1,3 @@
+rootProject.name='Nano Apps'
+include ':app', ':viewfactories'
+project(':viewfactories').projectDir = new File('Android-View-Factories/viewfactories')
