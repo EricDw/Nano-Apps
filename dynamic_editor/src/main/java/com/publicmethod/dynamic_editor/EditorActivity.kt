@@ -1,4 +1,4 @@
-package com.publicmethod.nanoapps
+package com.publicmethod.dynamic_editor
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -6,17 +6,16 @@ import android.view.Gravity
 import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuAdapter
-import androidx.appcompat.view.menu.MenuBuilder
-import androidx.core.content.ContextCompat.getDrawable
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomappbar.BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+import com.publicmethod.nanoapps.R
 import com.publicmethod.viewfactories.factories.createBottomAppBar
 import com.publicmethod.viewfactories.factories.createConstraintLayout
 import com.publicmethod.viewfactories.factories.createCoordinatorLayout
 import com.publicmethod.viewfactories.factories.createFloatingActionButton
 import com.publicmethod.viewfactories.theme.themeWithBottomAppBarMargins
 
-class MainActivity : AppCompatActivity() {
+class EditorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +33,8 @@ class MainActivity : AppCompatActivity() {
                 id = R.id.app_bar_main
                 fabAlignmentMode = FAB_ALIGNMENT_MODE_CENTER
                 backgroundTint = ColorStateList.valueOf(getColor(R.color.colorPrimaryDark))
-                navigationIcon = getDrawable(this@MainActivity, R.drawable.ic_menu_white_24dp)
+                navigationIcon =
+                    ContextCompat.getDrawable(this@EditorActivity, R.drawable.ic_menu_white_24dp)
             }.also {
                 addView(it)
                 setSupportActionBar(it)
@@ -44,8 +44,8 @@ class MainActivity : AppCompatActivity() {
             createFloatingActionButton {
                 id = R.id.fab_main
                 setImageDrawable(
-                    getDrawable(
-                        this@MainActivity,
+                    ContextCompat.getDrawable(
+                        this@EditorActivity,
                         R.drawable.ic_edit_white_30dp
                     )
                 )
