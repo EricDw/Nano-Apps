@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.Gravity
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +45,7 @@ class EditorActivity : AppCompatActivity() {
     private val settings: EditText.() -> Unit = {
         setTextColor(Color.GREEN)
         setBackgroundColor(Color.BLACK)
+        imeOptions = EditorInfo.IME_FLAG_NO_FULLSCREEN
         inputType = InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE
         gravity = Gravity.TOP or Gravity.START
         isSingleLine = false
