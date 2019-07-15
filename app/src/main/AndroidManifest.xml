@@ -15,46 +15,40 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup, GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+
+        <activity android:name="com.publicmethod.nanoapps.MainActivity">
+
+            <tools:validation testUrl="https://nanoapps.publicmethod.com/main" />
+            <tools:validation testUrl="http://nanoapps.publicmethod.com/main" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <intent-filter
-                android:autoVerify="true">
-
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
                     android:host="nanoapps.publicmethod.com"
-                    android:pathPrefix="/main" />
-
+                    android:pathPrefix="/main"
+                    android:scheme="http" />
             </intent-filter>
-
-            <intent-filter
-                android:autoVerify="true">
-
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="nanoapps.publicmethod.com"
-                    android:pathPrefix="/main" />
-
+                    android:pathPrefix="/main"
+                    android:scheme="https" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>

@@ -1,3 +1,3 @@
 rootProject.name='Nano Apps'
-include ':app', ':viewfactories', ':dynamic_editor'
+include ':app', ':viewfactories', ':dynamic_editor', ':dynamic_markdown_viewer'
 project(':viewfactories').projectDir = new File('Android-View-Factories/viewfactories')
