@@ -4,4 +4,7 @@
     <item name="coordinator_layout_main" type="id" />
     <item name="app_bar_main" type="id" />
     <item name="fab_main" type="id" />
+    <item name="edit_text_main" type="id" />
+    <item name="button_view" type="id" />
+    <item name="text_view_title" type="id" />
 </resources>

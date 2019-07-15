@@ -1,29 +1,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.publicmethod.dynamic_editor">
+    package="com.publicmethod.dynamic_markdown_viewer">
 
     <dist:module
         dist:instant="true"
-        dist:title="@string/title_dynamic_editor">
+        dist:title="@string/title_dynamic_markdown_viewer">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
         <dist:fusing dist:include="false" />
     </dist:module>
 
-    <application
-        android:allowBackup="false"
-        android:fullBackupContent="false"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+    <application tools:ignore="GoogleAppIndexingWarning">
 
+        <activity android:name=".ViewerActivity">
 
-        <activity android:name=".EditorActivity">
-
-            <tools:validation testUrl="https://nanoapps.publicmethod.com/editor" />
-            <tools:validation testUrl="http://nanoapps.publicmethod.com/editor" />
+            <tools:validation testUrl="https://nanoapps.publicmethod.com/viewer" />
+            <tools:validation testUrl="http://nanoapps.publicmethod.com/viewer" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +33,7 @@
 
                 <data
                     android:host="nanoapps.publicmethod.com"
-                    android:pathPrefix="/editor"
+                    android:pathPrefix="/viewer"
                     android:scheme="http" />
             </intent-filter>
 
@@ -51,12 +45,10 @@
 
                 <data
                     android:host="nanoapps.publicmethod.com"
-                    android:pathPrefix="/editor"
+                    android:pathPrefix="/viewer"
                     android:scheme="https" />
             </intent-filter>
-
         </activity>
-
     </application>
 </manifest>
 

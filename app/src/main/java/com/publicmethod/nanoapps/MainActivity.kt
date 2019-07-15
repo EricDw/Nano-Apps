@@ -1,78 +1,84 @@
 package com.publicmethod.nanoapps
 
-import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
-import android.view.Menu
-import android.widget.Toast
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuAdapter
-import androidx.appcompat.view.menu.MenuBuilder
-import androidx.core.content.ContextCompat.getDrawable
-import com.google.android.material.bottomappbar.BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-import com.publicmethod.viewfactories.factories.createBottomAppBar
-import com.publicmethod.viewfactories.factories.createConstraintLayout
-import com.publicmethod.viewfactories.factories.createCoordinatorLayout
-import com.publicmethod.viewfactories.factories.createFloatingActionButton
-import com.publicmethod.viewfactories.theme.themeWithBottomAppBarMargins
+import androidx.constraintlayout.widget.ConstraintSet.*
+import com.publicmethod.viewfactories.dp
+import com.publicmethod.viewfactories.factories.*
+import com.publicmethod.viewfactories.theme.applyConnections
+import com.publicmethod.viewfactories.theme.applyFABConstraints
+import com.publicmethod.viewfactories.theme.constrainToTopLeftAndRighOfParent
+import io.noties.markwon.Markwon
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val rootLayout = createCoordinatorLayout {
-            id = R.id.coordinator_layout_main
-        }.apply {
 
-            createConstraintLayout {
-                id = R.id.constraint_layout_main
-            }.also {
-                addView(it)
-            }
+        createConstraintLayout constraint@{
 
-            createBottomAppBar {
-                id = R.id.app_bar_main
-                fabAlignmentMode = FAB_ALIGNMENT_MODE_CENTER
-                backgroundTint = ColorStateList.valueOf(getColor(R.color.colorPrimaryDark))
-                navigationIcon = getDrawable(this@MainActivity, R.drawable.ic_menu_white_24dp)
-            }.also {
-                addView(it)
-                setSupportActionBar(it)
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            }
+            setPadding(dp(8), dp(8), dp(8), dp(8))
 
-            createFloatingActionButton {
-                id = R.id.fab_main
-                setImageDrawable(
-                    getDrawable(
-                        this@MainActivity,
-                        R.drawable.ic_edit_white_30dp
-                    )
-                )
-                setOnClickListener {
-                    showBottomInput()
+            setBackgroundColor(Color.BLACK)
+
+            createTextView {
+
+                id = R.id.text_view_title
+
+                setTextColor(Color.GREEN)
+
+                textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+
+                layoutParams = viewGroupMatchParentWidthParams
+
+                with(this, ::addView)
+
+                with(this, ::constrainToTopLeftAndRighOfParent)
+
+            }.also { Markwon.create(this@MainActivity).setMarkdown(it, "# Nano Apps") }
+
+            createButton {
+
+                text = "LAUNCH EDITOR"
+
+                layoutParams = ViewGroup.MarginLayoutParams(layoutParams).apply {
+                    setMargins(0, dp(40), 0, 0)
                 }
-                themeWithBottomAppBarMargins(
-                    R.id.app_bar_main,
-                    Gravity.CENTER
-                )
-            }.also {
-                addView(it)
+
+                setBackgroundColor(Color.BLACK)
+                setTextColor(Color.GREEN)
+
+                setOnClickListener {
+                    ActivityLauncher.launchEditor(this@MainActivity)
+                }
+
+                with(this, ::addView)
+
+                applyConnections {
+                    connect(id, TOP, R.id.text_view_title, BOTTOM)
+                    connect(id, BOTTOM, PARENT_ID, BOTTOM)
+                    connect(id, RIGHT, PARENT_ID, RIGHT)
+                    connect(id, LEFT, PARENT_ID, LEFT)
+                }
+
             }
-        }
 
-        setContentView(rootLayout)
+//            createFloatingActionButton {
+//
+//                setOnClickListener {
+//                    ActivityLauncher.launchEditor(
+//                        this@MainActivity
+//                    )
+//                }
+//
+//                with(this, ::addView)
+//
+//                with(this, ::applyFABConstraints)
+//            }
+        }.also(::setContentView)
+
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean =
-        menuInflater.inflate(R.menu.menu_main, menu).run {
-            true
-        }
-
-    private fun showBottomInput() =
-        Toast.makeText(
-            this,
-            "Showing bottom modal",
-            Toast.LENGTH_LONG
-        ).show()
 }
